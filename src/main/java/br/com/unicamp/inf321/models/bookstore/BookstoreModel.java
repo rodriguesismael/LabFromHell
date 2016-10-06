@@ -5,6 +5,8 @@ import org.graphwalker.java.annotation.GraphWalker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.TouchScreen;
+import org.openqa.selenium.interactions.touch.ScrollAction;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -47,13 +49,16 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	@Override
 	public void v_ResumoCompra() {
 		// TODO Auto-generated method stub
-		
+		By telaCarrinho = By.className("android.widget.Image");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(telaCarrinho));
 	}
 
 	@Override
 	public void e_AdicionarProdutos() {
 		// TODO Auto-generated method stub
-		
+		TouchAction clicarComprar = new TouchAction(driver);
+		// clique no botão continuar comprando
+		clicarComprar.tap(1250,900).perform();		
 	}
 
 	@Override
@@ -65,8 +70,20 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	@Override
 	public void e_enderecoEntregaSelecionado() {
 		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		TouchAction clicarInformarCep   = new TouchAction(driver);
+		TouchAction clicarCalcularFrete = new TouchAction(driver);
+		TouchAction clicarFinalizar		= new TouchAction(driver);
+		// informar CEP
+		clicarInformarCep.tap(404, 870).perform();
+		// clique no botão calcular frete
+		clicarCalcularFrete.tap(768,868).perform();
+		
+		//Finalizar Compra
+		clicarFinalizar.tap(1620,555).perform();
 		
 	}
+	
 
 	@Override
 	public void e_pagamentoEfetivado() {
@@ -125,7 +142,10 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	@Override
 	public void v_Login() {
 		// TODO Auto-generated method stub
-		
+		TouchAction clicarLogin = new TouchAction(driver);
+		By telaLogin = By.className("android.widget.Image");
+		// clique no botão continuar comprando
+		clicarLogin.tap(189, 761).perform();
 	}
 
 	@Override
@@ -138,7 +158,8 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	@Override
 	public void v_Inicial() {
 		// TODO Auto-generated method stub
-		driver.pressKeyCode(AndroidKeyCode.KEYCODE_MENU);
+		By telaInicial = By.className("android.widget.Image");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(telaInicial));
 		
 	}
 
@@ -151,7 +172,8 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	@Override
 	public void v_Produtos() {
 		// TODO Auto-generated method stub
-		
+		By telaProdutos = By.className("android.widget.Image");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(telaProdutos));
 	}
 
 	@Override
@@ -163,7 +185,8 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	@Override
 	public void v_ModalidadesEntrega() {
 		// TODO Auto-generated method stub
-		
+		By telaWhatever = By.className("android.widget.Image");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(telaWhatever));		
 	}
 
 	@Override
@@ -188,19 +211,33 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	public void e_Pesquisar() {
 		// TODO Auto-generated method stub
 		TouchAction clicarPesquisa = new TouchAction(driver);
-		//clique na barra de busca
-		By telaInicial = By.className("android.widget.Image");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(telaInicial));
-		clicarPesquisa.tap(450,350).perform(); //250, 1000
+
+		//By telaApp = By.className("android.widget.Image");
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(telaApp));
+		
+		//Tem q clicar 2x para fazer uma busca valida	
+		clicarPesquisa.tap(450,350).perform();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(telaApp));
+		clicarPesquisa.tap(450,350).perform();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(telaApp));
 		//clique no botão pesquisar
-		wait.until(ExpectedConditions.visibilityOfElementLocated(telaInicial));
 		clicarPesquisa.tap(1700,350).perform();
+		
+		//escolher o produto propriamente dito
+		clicarPesquisa.tap(250,1000).perform();
 	}
 
 	@Override
 	public void e_InformarEstoque() {
 		// TODO Auto-generated method stub
-		
+		TouchAction clicarVoltaInicio = new TouchAction(driver);
+		By telaFinalCompra = By.className("android.widget.logImage");
+		// clique no botão continuar comprando
+		wait.until(ExpectedConditions.visibilityOfElementLocated(telaFinalCompra));
+		clicarVoltaInicio.tap(896, 795).perform();
+		// clique no menu bookstore
+		wait.until(ExpectedConditions.visibilityOfElementLocated(telaFinalCompra));
+		clicarVoltaInicio.tap(221, 111).perform();
 	}
 
 	@Override

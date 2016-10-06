@@ -111,7 +111,9 @@ public class BookstoreAppiumTest {
 		//percorre as arestas de inicio e de pesquisa até atingir o vértice de produtos (não fui até o final pois não implementei todos os cliques) 
 		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_Iniciar")));
 		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_Pesquisar")));
-		cp.addPathGenerator(new AStarPath(new ReachedVertex("v_Produtos")));
+		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_AdicionarProdutos")));
+		//cp.addPathGenerator(new AStarPath(new ReachedEdge("e_enderecoEntrega")));
+		cp.addPathGenerator(new AStarPath(new ReachedVertex("v_ResumoCompra")));
 		//cp.addPathGenerator(new AStarPath(new ReachedVertex("v_EditNoteView")));
 		
 		Result result = new GraphWalkerTestBuilder()

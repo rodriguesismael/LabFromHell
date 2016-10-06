@@ -9,6 +9,7 @@ import org.graphwalker.core.machine.ExecutionContext;
 import org.graphwalker.java.annotation.GraphWalker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.touch.ScrollAction;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -40,6 +41,7 @@ public class NotesListModel extends ExecutionContext implements NotesList {
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("android:id/title")));
 		TouchAction touchAction = new TouchAction(driver);
     	touchAction.tap(895, 1655).perform();
+    	
 	}
 
 	@Override
