@@ -30,14 +30,28 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 		// TODO Auto-generated constructor stub
 		super();
 		this.driver = driver;
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, 30,5000);
 	}
 	
 	
 	@Override
 	public void e_RealizarPagamentoCC() {
 		// TODO Auto-generated method stub
+		TouchAction clicarCartao = new TouchAction(driver);
+		try {
+			Thread.sleep(2000);
+			//Faz o scroll na tela de modalidade de pagamento
+			clicarCartao.press(350, 520).perform();
+			Thread.sleep(2000);
+			clicarCartao.moveTo(0,50).perform();
+			Thread.sleep(2000);
+			clicarCartao.tap(296, 594).perform();
+			Thread.sleep(2000);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
+		//
 	}
 
 	@Override
@@ -57,14 +71,19 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	public void e_AdicionarProdutos() {
 		// TODO Auto-generated method stub
 		TouchAction clicarAddProduto = new TouchAction(driver);
+		TouchAction clicarAddCarriho = new TouchAction(driver);
 		//escolher o produto na home (ir para tela do produto)
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));
-		clicarAddProduto.tap(250,1000).perform();
+		try{
+			Thread.sleep(5000);
+			clicarAddProduto.tap(250,1000).perform();
+	
+			Thread.sleep(5000);//clicar em comprar na tela do protudo (vai para o carrinho)
+			clicarAddCarriho.tap(1250,900).perform();
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));
-		//clicar em comprar na tela do protudo (vai para o carrinho)
-		clicarAddProduto.tap(1250,900).perform();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));
+
 	}
 
 	@Override
@@ -76,21 +95,26 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	@Override
 	public void e_enderecoEntregaSelecionado() {
 		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
+		
+		//Considerando que o cep foi informado (de acordo com o fluxo das telas)
 		if(getAttribute("endereco_entrega").toString() == "true"){
-			TouchAction clicarInformarCep   = new TouchAction(driver);
-			TouchAction clicarCalcularFrete = new TouchAction(driver);
-			TouchAction clicarFinalizar		= new TouchAction(driver);
-			// informar CEP
-			clicarInformarCep.tap(404, 870).perform();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));
-			// clique no botão calcular frete
-			clicarCalcularFrete.tap(768,868).perform();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));		
-			//Finalizar Compra (vai para tela de fazer login)
-			/*
-			clicarFinalizar.tap(1620,555).perform();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));*/
+			TouchAction clicarTelaCarrinho = new TouchAction(driver);
+			/*TouchAction clicarCalcularFrete = new TouchAction(driver);
+			TouchAction clicarFinalizar		= new TouchAction(driver);*/
+			try{
+				//press e moveTo fazem o scroll da tela
+				clicarTelaCarrinho.press(1620,900).perform();
+				Thread.sleep(2000);
+				clicarTelaCarrinho.moveTo(0, 50).perform();
+				Thread.sleep(2000);
+				
+				//clicar no finalizarCompra
+				clicarTelaCarrinho.tap(1620,555).perform();
+				Thread.sleep(2000);
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+
 		}
 	}
 	
@@ -104,6 +128,14 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	@Override
 	public void e_realizarLogin() {
 		// TODO Auto-generated method stub
+		TouchAction clicarLogar = new TouchAction(driver);
+		try{
+			Thread.sleep(2000);
+			clicarLogar.tap(215,765).perform();
+			Thread.sleep(2000);
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 	}
 
@@ -116,7 +148,7 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	@Override
 	public void e_loginRealizado() {
 		// TODO Auto-generated method stub
-		
+		System.out.println("Cliente esta logado");
 	}
 
 	@Override
@@ -128,7 +160,16 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	@Override
 	public void e_enderecoEntrega() {
 		// TODO Auto-generated method stub
-		
+		if(getAttribute("endereco_entrega").toString() == "false"){
+			TouchAction clicarTelaCEP = new TouchAction(driver);
+			try{
+				Thread.sleep(2000);
+				clicarTelaCEP.tap(404, 870).perform();
+				Thread.sleep(2000);
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
 	}
 
 	@Override
