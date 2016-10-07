@@ -96,8 +96,6 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));
 			clicarFinalizar.moveTo(0, 50).perform();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));
-//			clicarFinalizar.release().perform();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));
 		}
 	}
 	
