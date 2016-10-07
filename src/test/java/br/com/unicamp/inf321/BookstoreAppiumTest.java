@@ -112,8 +112,8 @@ public class BookstoreAppiumTest {
 		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_Iniciar")));
 		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_Pesquisar")));
 		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_AdicionarProdutos")));
-		//cp.addPathGenerator(new AStarPath(new ReachedEdge("e_enderecoEntrega")));
-		cp.addPathGenerator(new AStarPath(new ReachedVertex("v_ResumoCompra")));
+		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_enderecoEntregaSelecionado")));
+		cp.addPathGenerator(new AStarPath(new ReachedVertex("v_Enderecos")));
 		//cp.addPathGenerator(new AStarPath(new ReachedVertex("v_EditNoteView")));
 		
 		Result result = new GraphWalkerTestBuilder()

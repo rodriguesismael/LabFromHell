@@ -56,9 +56,15 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	@Override
 	public void e_AdicionarProdutos() {
 		// TODO Auto-generated method stub
-		TouchAction clicarComprar = new TouchAction(driver);
-		// clique no botão continuar comprando
-		clicarComprar.tap(1250,900).perform();		
+		TouchAction clicarAddProduto = new TouchAction(driver);
+		//escolher o produto na home (ir para tela do produto)
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));
+		clicarAddProduto.tap(250,1000).perform();
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));
+		//clicar em comprar na tela do protudo (vai para o carrinho)
+		clicarAddProduto.tap(1250,900).perform();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));
 	}
 
 	@Override
@@ -71,17 +77,21 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	public void e_enderecoEntregaSelecionado() {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
-		TouchAction clicarInformarCep   = new TouchAction(driver);
-		TouchAction clicarCalcularFrete = new TouchAction(driver);
-		TouchAction clicarFinalizar		= new TouchAction(driver);
-		// informar CEP
-		clicarInformarCep.tap(404, 870).perform();
-		// clique no botão calcular frete
-		clicarCalcularFrete.tap(768,868).perform();
-		
-		//Finalizar Compra
-		clicarFinalizar.tap(1620,555).perform();
-		
+		if(getAttribute("endereco_entrega").toString() == "true"){
+			TouchAction clicarInformarCep   = new TouchAction(driver);
+			TouchAction clicarCalcularFrete = new TouchAction(driver);
+			TouchAction clicarFinalizar		= new TouchAction(driver);
+			// informar CEP
+			clicarInformarCep.tap(404, 870).perform();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));
+			// clique no botão calcular frete
+			clicarCalcularFrete.tap(768,868).perform();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));		
+			//Finalizar Compra (vai para tela de fazer login)
+			/*
+			clicarFinalizar.tap(1620,555).perform();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));*/
+		}
 	}
 	
 
@@ -142,10 +152,10 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	@Override
 	public void v_Login() {
 		// TODO Auto-generated method stub
-		TouchAction clicarLogin = new TouchAction(driver);
+		/*TouchAction clicarLogin = new TouchAction(driver);
 		By telaLogin = By.className("android.widget.Image");
 		// clique no botão continuar comprando
-		clicarLogin.tap(189, 761).perform();
+		clicarLogin.tap(189, 761).perform();*/
 	}
 
 	@Override
@@ -212,19 +222,16 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 		// TODO Auto-generated method stub
 		TouchAction clicarPesquisa = new TouchAction(driver);
 
-		//By telaApp = By.className("android.widget.Image");
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(telaApp));
+		By telaApp = By.className("android.widget.Image");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(telaApp));
 		
 		//Tem q clicar 2x para fazer uma busca valida	
 		clicarPesquisa.tap(450,350).perform();
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(telaApp));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(telaApp));
 		clicarPesquisa.tap(450,350).perform();
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(telaApp));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(telaApp));
 		//clique no botão pesquisar
 		clicarPesquisa.tap(1700,350).perform();
-		
-		//escolher o produto propriamente dito
-		clicarPesquisa.tap(250,1000).perform();
 	}
 
 	@Override
