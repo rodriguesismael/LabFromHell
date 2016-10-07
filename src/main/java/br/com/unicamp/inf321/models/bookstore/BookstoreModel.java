@@ -1,5 +1,6 @@
 package br.com.unicamp.inf321.models.bookstore;
 
+import org.apache.tools.ant.taskdefs.Sleep;
 import org.graphwalker.core.machine.ExecutionContext;
 import org.graphwalker.java.annotation.GraphWalker;
 import org.openqa.selenium.By;
@@ -30,7 +31,7 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 		// TODO Auto-generated constructor stub
 		super();
 		this.driver = driver;
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, 30, 20000);
 	}
 	
 	
@@ -57,14 +58,16 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	public void e_AdicionarProdutos() {
 		// TODO Auto-generated method stub
 		TouchAction clicarAddProduto = new TouchAction(driver);
+		TouchAction clicarAddCarrinho = new TouchAction(driver);
 		//escolher o produto na home (ir para tela do produto)
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));
+
+		sleep();
 		clicarAddProduto.tap(250,1000).perform();
-		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));
+				
 		//clicar em comprar na tela do protudo (vai para o carrinho)
-		clicarAddProduto.tap(1250,900).perform();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));
+		sleep();
+		clicarAddCarrinho.tap(1250,900).perform();
+
 	}
 
 	@Override
@@ -88,9 +91,13 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 			clicarCalcularFrete.tap(768,868).perform();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));		
 			//Finalizar Compra (vai para tela de fazer login)
-			/*
-			clicarFinalizar.tap(1620,555).perform();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));*/
+			
+			clicarFinalizar.press(1620,555).perform();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));
+			clicarFinalizar.moveTo(0, 50).perform();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));
+//			clicarFinalizar.release().perform();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("android.widget.Image")));
 		}
 	}
 	
@@ -275,6 +282,15 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	public void v_Enderecos() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void sleep(){
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	

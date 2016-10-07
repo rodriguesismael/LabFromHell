@@ -16,11 +16,14 @@ import org.graphstream.stream.file.FileSinkImages.LayoutPolicy;
 import org.graphstream.stream.file.FileSinkImages.OutputType;
 import org.graphstream.stream.file.FileSinkImages.RendererType;
 import org.graphstream.stream.file.FileSinkImages.Resolutions;
+import org.graphwalker.core.condition.EdgeCoverage;
 import org.graphwalker.core.condition.ReachedEdge;
 import org.graphwalker.core.condition.ReachedVertex;
+import org.graphwalker.core.condition.TimeDuration;
 import org.graphwalker.core.event.Observer;
 import org.graphwalker.core.generator.AStarPath;
 import org.graphwalker.core.generator.CombinedPath;
+import org.graphwalker.core.generator.RandomPath;
 import org.graphwalker.java.test.Result;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -36,6 +39,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import br.com.unicamp.inf321.helper.GraphWalkerTestBuilder;
 import br.com.unicamp.inf321.models.bookstore.BookstoreModel;
+import br.com.unicamp.inf321.models.noteslist.NotesListModel;
 import br.com.unicamp.inf321.observers.GraphStreamObserver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
@@ -109,16 +113,37 @@ public class BookstoreAppiumTest {
 	public void runSmokeTest() {
 		CombinedPath cp = new CombinedPath();
 		//percorre as arestas de inicio e de pesquisa até atingir o vértice de produtos (não fui até o final pois não implementei todos os cliques) 
-		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_Iniciar")));
-		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_Pesquisar")));
-		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_AdicionarProdutos")));
-		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_enderecoEntregaSelecionado")));
-		cp.addPathGenerator(new AStarPath(new ReachedVertex("v_Enderecos")));
-		//cp.addPathGenerator(new AStarPath(new ReachedVertex("v_EditNoteView")));
+//		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_Iniciar")));
+//		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_Pesquisar")));
+//		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_AdicionarProdutos")));
+//		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_enderecoEntregaSelecionado")));
+//		cp.addPathGenerator(new AStarPath(new ReachedVertex("v_Enderecos")));
+//		cp.addPathGenerator(new AStarPath(new ReachedVertex("v_ModalidadesEntrega")));
+		cp.addPathGenerator(new AStarPath(new ReachedVertex("v_UC06_Estoque")));		
+//		cp.addPathGenerator(new AStarPath(new ReachedVertex("v_EditNoteView")));
 		
 		Result result = new GraphWalkerTestBuilder()
 				.addModel(MODEL_PATH,
 						cp, new BookstoreModel(driver))
+				.addObserver(observer) //adicona observer para ver execução do modelo animada
+				.execute(true);
+		Assertions.assertThat(result.getErrors()).as("Errors: [" + String.join(", ", result.getErrors()) + "]").isNullOrEmpty();
+	}
+	
+	@Test
+	public void runStabilityTest() {
+		Result result = new GraphWalkerTestBuilder()
+				.addModel(MODEL_PATH,
+						new RandomPath(new TimeDuration(60, TimeUnit.SECONDS)), "e_Iniciar", new NotesListModel(driver))
+				.addObserver(observer) //adicona observer para ver execução do modelo animada
+				.execute(true);
+		Assertions.assertThat(result.getErrors()).as("Errors: [" + String.join(", ", result.getErrors()) + "]").isNullOrEmpty();
+	}
+
+	@Test
+	public void runFunctionalTest() {
+		Result result = new GraphWalkerTestBuilder()
+				.addModel(MODEL_PATH, new RandomPath(new EdgeCoverage(100)), "e_Iniciar", new NotesListModel(driver))
 				.addObserver(observer) //adicona observer para ver execução do modelo animada
 				.execute(true);
 		Assertions.assertThat(result.getErrors()).as("Errors: [" + String.join(", ", result.getErrors()) + "]").isNullOrEmpty();
