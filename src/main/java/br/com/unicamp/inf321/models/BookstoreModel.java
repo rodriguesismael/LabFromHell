@@ -33,12 +33,6 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	}
 
 	@Override
-	public void e_aplicaPromocao() {
-		// TODO Auto-generated method stub
-		System.out.println("Running: e_aplicaPromocao");
-	}
-
-	@Override
 	public void e_enderecoEntregaSelecionado() {
 		// TODO Auto-generated method stub
 		System.out.println("Running: e_enderecoEntregaSelecionado");

@@ -40,14 +40,14 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 		// TODO Auto-generated method stub
 		TouchAction clicarCartao = new TouchAction(driver);
 		try {
-			Thread.sleep(2000);
+
 			//Faz o scroll na tela de modalidade de pagamento
-			clicarCartao.press(350, 520).perform();
-			Thread.sleep(2000);
-			clicarCartao.moveTo(0,50).perform();
-			Thread.sleep(2000);
-			clicarCartao.tap(296, 594).perform();
-			Thread.sleep(2000);
+			clicarCartao.press(350, 520).waitAction(200).perform();
+
+			clicarCartao.moveTo(0,50).waitAction(200).perform();
+
+			clicarCartao.tap(296, 594).waitAction(200).perform();
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -75,11 +75,12 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 		TouchAction clicarAddCarriho = new TouchAction(driver);
 		//escolher o produto na home (ir para tela do produto)
 		try{
-			Thread.sleep(5000);
-			clicarAddProduto.tap(250,1000).perform();
+			
+			clicarAddProduto.tap(250,1000).waitAction(200).perform();
 	
-			Thread.sleep(5000);//clicar em comprar na tela do protudo (vai para o carrinho)
-			clicarAddCarriho.tap(1250,900).perform();
+
+			//clicar em comprar na tela do protudo (vai para o carrinho)
+			clicarAddCarriho.tap(1250,900).waitAction(200).perform();
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -98,14 +99,14 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 			TouchAction clicarFinalizar		= new TouchAction(driver);*/
 			try{
 				//press e moveTo fazem o scroll da tela
-				clicarTelaCarrinho.press(1620,900).perform();
-				Thread.sleep(2000);
-				clicarTelaCarrinho.moveTo(0, 50).perform();
-				Thread.sleep(2000);
+				clicarTelaCarrinho.press(1620,900).waitAction(200).perform();
+				
+				clicarTelaCarrinho.moveTo(0, 50).waitAction(200).perform();
+				
 				
 				//clicar no finalizarCompra
-				clicarTelaCarrinho.tap(1620,555).perform();
-				Thread.sleep(2000);
+				clicarTelaCarrinho.tap(1620,555).waitAction(200).perform();
+				
 			}catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -125,9 +126,9 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 		// TODO Auto-generated method stub
 		TouchAction clicarLogar = new TouchAction(driver);
 		try{
-			Thread.sleep(2000);
-			clicarLogar.tap(215,765).perform();
-			Thread.sleep(2000);
+			
+			clicarLogar.tap(215,765).waitAction(200).perform();
+			
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -158,9 +159,9 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 		if(getAttribute("endereco_entrega").toString() == "false"){
 			TouchAction clicarTelaCEP = new TouchAction(driver);
 			try{
-				Thread.sleep(2000);
-				clicarTelaCEP.tap(404, 870).perform();
-				Thread.sleep(2000);
+				
+				clicarTelaCEP.tap(404, 870).waitAction(200).perform();
+				
 			}catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -262,12 +263,12 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(telaApp));
 		
 		//Tem q clicar 2x para fazer uma busca valida	
-		clicarPesquisa.tap(450,350).perform();
+		clicarPesquisa.tap(450,350).waitAction(200).perform();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(telaApp));
-		clicarPesquisa.tap(450,350).perform();
+		clicarPesquisa.tap(450,350).waitAction(200).perform();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(telaApp));
 		//clique no botão pesquisar
-		clicarPesquisa.tap(1700,350).perform();
+		clicarPesquisa.tap(1700,350).waitAction(200).perform();
 	}
 
 	@Override
@@ -277,10 +278,10 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 		By telaFinalCompra = By.className("android.widget.Image");
 		// clique no botão continuar comprando
 		wait.until(ExpectedConditions.visibilityOfElementLocated(telaFinalCompra));
-		clicarVoltaInicio.tap(896, 795).perform();
+		clicarVoltaInicio.tap(896, 795).waitAction(200).perform();
 		// clique no menu bookstore
 		wait.until(ExpectedConditions.visibilityOfElementLocated(telaFinalCompra));
-		clicarVoltaInicio.tap(221, 111).perform();
+		clicarVoltaInicio.tap(221, 111).waitAction(200).perform();
 	}
 
 	@Override
