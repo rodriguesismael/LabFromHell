@@ -113,14 +113,8 @@ public class BookstoreAppiumTest {
 	public void runSmokeTest() {
 		CombinedPath cp = new CombinedPath();
 		//percorre as arestas de inicio e de pesquisa até atingir o vértice de produtos (não fui até o final pois não implementei todos os cliques) 
-//		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_Iniciar")));
-//		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_Pesquisar")));
-//		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_AdicionarProdutos")));
-//		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_enderecoEntregaSelecionado")));
 		cp.addPathGenerator(new AStarPath(new ReachedVertex("v_Enderecos")));
-//		cp.addPathGenerator(new AStarPath(new ReachedVertex("v_ModalidadesEntrega")));
-		cp.addPathGenerator(new AStarPath(new ReachedVertex("v_UC06_Estoque")));		
-//		cp.addPathGenerator(new AStarPath(new ReachedVertex("v_EditNoteView")));
+		cp.addPathGenerator(new AStarPath(new ReachedVertex("v_UC06_Estoque")));
 		
 		Result result = new GraphWalkerTestBuilder()
 				.addModel(MODEL_PATH,
