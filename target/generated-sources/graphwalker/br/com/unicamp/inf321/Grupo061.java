@@ -21,9 +21,6 @@ public interface Grupo061 {
     void e_AdicionarProdutos();
 
     @Edge()
-    void e_aplicaPromocao();
-
-    @Edge()
     void e_enderecoEntregaSelecionado();
 
     @Edge()

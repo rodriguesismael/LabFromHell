@@ -117,7 +117,7 @@ public class BookstoreAppiumTest {
 //		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_Pesquisar")));
 //		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_AdicionarProdutos")));
 //		cp.addPathGenerator(new AStarPath(new ReachedEdge("e_enderecoEntregaSelecionado")));
-//		cp.addPathGenerator(new AStarPath(new ReachedVertex("v_Enderecos")));
+		cp.addPathGenerator(new AStarPath(new ReachedVertex("v_Enderecos")));
 //		cp.addPathGenerator(new AStarPath(new ReachedVertex("v_ModalidadesEntrega")));
 		cp.addPathGenerator(new AStarPath(new ReachedVertex("v_UC06_Estoque")));		
 //		cp.addPathGenerator(new AStarPath(new ReachedVertex("v_EditNoteView")));
@@ -134,7 +134,7 @@ public class BookstoreAppiumTest {
 	public void runStabilityTest() {
 		Result result = new GraphWalkerTestBuilder()
 				.addModel(MODEL_PATH,
-						new RandomPath(new TimeDuration(60, TimeUnit.SECONDS)), "e_Iniciar", new NotesListModel(driver))
+						new RandomPath(new TimeDuration(60, TimeUnit.SECONDS)), "e_Iniciar", new BookstoreModel(driver))
 				.addObserver(observer) //adicona observer para ver execução do modelo animada
 				.execute(true);
 		Assertions.assertThat(result.getErrors()).as("Errors: [" + String.join(", ", result.getErrors()) + "]").isNullOrEmpty();
@@ -143,7 +143,7 @@ public class BookstoreAppiumTest {
 	@Test
 	public void runFunctionalTest() {
 		Result result = new GraphWalkerTestBuilder()
-				.addModel(MODEL_PATH, new RandomPath(new EdgeCoverage(100)), "e_Iniciar", new NotesListModel(driver))
+				.addModel(MODEL_PATH, new RandomPath(new EdgeCoverage(100)), "e_Iniciar", new BookstoreModel(driver))
 				.addObserver(observer) //adicona observer para ver execução do modelo animada
 				.execute(true);
 		Assertions.assertThat(result.getErrors()).as("Errors: [" + String.join(", ", result.getErrors()) + "]").isNullOrEmpty();

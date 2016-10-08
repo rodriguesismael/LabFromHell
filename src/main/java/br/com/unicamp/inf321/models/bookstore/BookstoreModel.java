@@ -88,12 +88,6 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	}
 
 	@Override
-	public void e_aplicaPromocao() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void e_enderecoEntregaSelecionado() {
 		// TODO Auto-generated method stub
 		
@@ -280,7 +274,7 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	public void e_InformarEstoque() {
 		// TODO Auto-generated method stub
 		TouchAction clicarVoltaInicio = new TouchAction(driver);
-		By telaFinalCompra = By.className("android.widget.logImage");
+		By telaFinalCompra = By.className("android.widget.Image");
 		// clique no botão continuar comprando
 		wait.until(ExpectedConditions.visibilityOfElementLocated(telaFinalCompra));
 		clicarVoltaInicio.tap(896, 795).perform();
