@@ -21,10 +21,13 @@ public interface Grupo061 {
     void e_AdicionarProdutos();
 
     @Edge()
+    void e_pagamentoEfetivadoCC();
+
+    @Edge()
     void e_enderecoEntregaSelecionado();
 
     @Edge()
-    void e_pagamentoEfetivado();
+    void e_continuarComprando();
 
     @Edge()
     void e_realizarLogin();
@@ -84,10 +87,10 @@ public interface Grupo061 {
     void e_Pesquisar();
 
     @Edge()
-    void e_InformarEstoque();
+    void e_pagamentoEfetivadoB();
 
-    @Vertex()
-    void v_UC_Promocoes();
+    @Edge()
+    void e_InformarEstoque();
 
     @Edge()
     void e_Fechar();

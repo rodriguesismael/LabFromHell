@@ -43,14 +43,14 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 		try {
 			
 			//Faz o scroll na tela de modalidade de pagamento
-			clicarCartao.press(350, 900).waitAction(2000).perform();
+			clicarCartao.press(350, 900).waitAction(1000).perform();
 			
-			clicarCartao.moveTo(0,50).waitAction(2000).perform();
+			clicarCartao.moveTo(0,50).waitAction(1000).perform();
 			
 			//clica no pagamento por cartão
-			clicarCartao.tap(296, 500).waitAction(2000).perform();
+			clicarCartao.tap(296, 500).waitAction(1000).perform();
 			
-			clicarCartao.tap(1475,770).waitAction(2000).perform();
+			clicarCartao.tap(1475,770).waitAction(1000).perform();
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -79,10 +79,10 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 		TouchAction clicarAddCarriho = new TouchAction(driver);
 		//escolher o produto na home (ir para tela do produto)
 		try{
-			clicarAddProduto.tap(250,1000).waitAction(2000).perform();
+			clicarAddProduto.tap(250,1000).waitAction(1000).perform();
 			
 			//clicar em comprar na tela do protudo (vai para o carrinho)
-			clicarAddCarriho.tap(1250,900).waitAction(2000).perform();
+			clicarAddCarriho.tap(1250,900).waitAction(1000).perform();
 			
 		}catch (Exception e) {
 			// TODO: handle exception
@@ -102,12 +102,12 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 			TouchAction clicarFinalizar		= new TouchAction(driver);*/
 			try{
 				//press e moveTo fazem o scroll da tela
-				clicarTelaCarrinho.press(1620,900).waitAction(2000).perform();
+				clicarTelaCarrinho.press(1620,900).waitAction(1000).perform();
 				
-				clicarTelaCarrinho.moveTo(0, 50).waitAction(2000).perform();
+				clicarTelaCarrinho.moveTo(0, 50).waitAction(1000).perform();
 				
 				//clicar no finalizarCompra
-				clicarTelaCarrinho.tap(1620,555).waitAction(2000).perform();
+				clicarTelaCarrinho.tap(1620,555).waitAction(1000).perform();
 				
 			}catch (Exception e) {
 				// TODO: handle exception
@@ -115,20 +115,42 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 
 		}
 	}
-	
 
 	@Override
-	public void e_pagamentoEfetivado() {
+	public void e_pagamentoEfetivadoCC() {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	@Override
+	public void e_continuarComprando() {
+		// TODO Auto-generated method stub
+		TouchAction clicarContinuar = new TouchAction(driver);
+		try{
+			clicarContinuar.tap(920,800).waitAction(1000).perform();
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		
+	}
+
+
+	@Override
+	public void e_pagamentoEfetivadoB() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	@Override
 	public void e_realizarLogin() {
 		// TODO Auto-generated method stub
 		TouchAction clicarLogar = new TouchAction(driver);
 		try{
-			clicarLogar.tap(215,765).waitAction(2000).perform();
+			clicarLogar.tap(215,765).waitAction(1000).perform();
 			
 		}catch (Exception e) {
 			// TODO: handle exception
@@ -160,7 +182,7 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 		if(getAttribute("endereco_entrega").toString() == "false"){
 			TouchAction clicarTelaCEP = new TouchAction(driver);
 			try{
-				clicarTelaCEP.tap(404, 870).waitAction(2000).perform();
+				clicarTelaCEP.tap(404, 870).waitAction(1000).perform();
 				
 			}catch (Exception e) {
 				// TODO: handle exception
@@ -260,14 +282,14 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(telaApp));
 		try {
 			//Tem q clicar 2x para fazer uma busca valida	
-			clicarPesquisa.tap(450,350).waitAction(2000).perform();
+			clicarPesquisa.tap(450,350).waitAction(1000).perform();
 			
 
-			clicarPesquisa.tap(450,350).waitAction(2000).perform();
+			clicarPesquisa.tap(450,350).waitAction(1000).perform();
 			
 
 			//clique no botão pesquisar
-			clicarPesquisa.tap(1700,350).waitAction(2000).perform();
+			clicarPesquisa.tap(1700,350).waitAction(1000).perform();
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -280,12 +302,6 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 		// TODO Auto-generated method stub
 		System.out.println("Informando Estoque");
 	
-	}
-
-	@Override
-	public void v_UC_Promocoes() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

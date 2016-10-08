@@ -27,6 +27,24 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	}
 
 	@Override
+	public void e_pagamentoEfetivadoCC() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void e_continuarComprando() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void e_pagamentoEfetivadoB() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public void e_AdicionarProdutos() {
 		// TODO Auto-generated method stub
 		System.out.println("Running: e_AdicionarProdutos");
@@ -36,12 +54,6 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	public void e_enderecoEntregaSelecionado() {
 		// TODO Auto-generated method stub
 		System.out.println("Running: e_enderecoEntregaSelecionado");
-	}
-
-	@Override
-	public void e_pagamentoEfetivado() {
-		// TODO Auto-generated method stub
-		System.out.println("Running: e_pagamentoEfetivado");
 	}
 
 	@Override
@@ -162,12 +174,6 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	public void e_InformarEstoque() {
 		// TODO Auto-generated method stub
 		System.out.println("Running: e_InformarEstoque");
-	}
-
-	@Override
-	public void v_UC_Promocoes() {
-		// TODO Auto-generated method stub
-		System.out.println("Running: v_UC_Promocoes");
 	}
 
 	@Override
