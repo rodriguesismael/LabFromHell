@@ -21,11 +21,12 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	private AndroidDriver<WebElement> driver;
 	private WebDriverWait wait;
 	
+	/*
 	private static final String TEXT_VIEW_LOCATOR = "android.widget.TextView";
 	private static final String LIST_VIEW_LOCATOR = "android.widget.ListView";
 	private static final String EDIT_TEXT_LOCATOR = "android.widget.EditText";
 	private static final String FIRST_NOTE_LOCATOR = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[2]/android.widget.ListView[1]/android.widget.TextView[1]";
-	
+	*/
 	public BookstoreModel(AndroidDriver<WebElement> driver) {
 		// TODO Auto-generated constructor stub
 		super();
@@ -39,14 +40,17 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 		// TODO Auto-generated method stub
 		TouchAction clicarCartao = new TouchAction(driver);
 		try {
-			Thread.sleep(2000);
+			
 			//Faz o scroll na tela de modalidade de pagamento
-			clicarCartao.press(350, 520).perform();
-			Thread.sleep(2000);
-			clicarCartao.moveTo(0,50).perform();
-			Thread.sleep(2000);
-			clicarCartao.tap(296, 594).perform();
-			Thread.sleep(2000);
+			clicarCartao.press(350, 900).waitAction(2000).perform();
+			
+			clicarCartao.moveTo(0,50).waitAction(2000).perform();
+			
+			//clica no pagamento por cartão
+			clicarCartao.tap(296, 500).waitAction(2000).perform();
+			
+			clicarCartao.tap(1475,770).waitAction(2000).perform();
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -74,11 +78,11 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 		TouchAction clicarAddCarriho = new TouchAction(driver);
 		//escolher o produto na home (ir para tela do produto)
 		try{
-			Thread.sleep(5000);
-			clicarAddProduto.tap(250,1000).perform();
-	
-			Thread.sleep(5000);//clicar em comprar na tela do protudo (vai para o carrinho)
-			clicarAddCarriho.tap(1250,900).perform();
+			clicarAddProduto.tap(250,1000).waitAction(2000).perform();
+			
+			//clicar em comprar na tela do protudo (vai para o carrinho)
+			clicarAddCarriho.tap(1250,900).waitAction(2000).perform();
+			
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -103,14 +107,13 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 			TouchAction clicarFinalizar		= new TouchAction(driver);*/
 			try{
 				//press e moveTo fazem o scroll da tela
-				clicarTelaCarrinho.press(1620,900).perform();
-				Thread.sleep(2000);
-				clicarTelaCarrinho.moveTo(0, 50).perform();
-				Thread.sleep(2000);
+				clicarTelaCarrinho.press(1620,900).waitAction(2000).perform();
+				
+				clicarTelaCarrinho.moveTo(0, 50).waitAction(2000).perform();
 				
 				//clicar no finalizarCompra
-				clicarTelaCarrinho.tap(1620,555).perform();
-				Thread.sleep(2000);
+				clicarTelaCarrinho.tap(1620,555).waitAction(2000).perform();
+				
 			}catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -130,9 +133,8 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 		// TODO Auto-generated method stub
 		TouchAction clicarLogar = new TouchAction(driver);
 		try{
-			Thread.sleep(2000);
-			clicarLogar.tap(215,765).perform();
-			Thread.sleep(2000);
+			clicarLogar.tap(215,765).waitAction(2000).perform();
+			
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -163,9 +165,8 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 		if(getAttribute("endereco_entrega").toString() == "false"){
 			TouchAction clicarTelaCEP = new TouchAction(driver);
 			try{
-				Thread.sleep(2000);
-				clicarTelaCEP.tap(404, 870).perform();
-				Thread.sleep(2000);
+				clicarTelaCEP.tap(404, 870).waitAction(2000).perform();
+				
 			}catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -193,10 +194,7 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	@Override
 	public void v_Login() {
 		// TODO Auto-generated method stub
-		/*TouchAction clicarLogin = new TouchAction(driver);
-		By telaLogin = By.className("android.widget.Image");
-		// clique no botão continuar comprando
-		clicarLogin.tap(189, 761).perform();*/
+		System.out.println("executando v_Login");
 	}
 
 	@Override
@@ -243,7 +241,7 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 	@Override
 	public void e_exibiModalidades() {
 		// TODO Auto-generated method stub
-		
+		System.out.println("Exibindo telas de modalidades de Pagamento");
 	}
 
 	@Override
@@ -265,27 +263,28 @@ public class BookstoreModel extends ExecutionContext implements Grupo061{
 
 		By telaApp = By.className("android.widget.Image");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(telaApp));
-		
-		//Tem q clicar 2x para fazer uma busca valida	
-		clicarPesquisa.tap(450,350).perform();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(telaApp));
-		clicarPesquisa.tap(450,350).perform();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(telaApp));
-		//clique no botão pesquisar
-		clicarPesquisa.tap(1700,350).perform();
+		try {
+			//Tem q clicar 2x para fazer uma busca valida	
+			clicarPesquisa.tap(450,350).waitAction(2000).perform();
+			
+
+			clicarPesquisa.tap(450,350).waitAction(2000).perform();
+			
+
+			//clique no botão pesquisar
+			clicarPesquisa.tap(1700,350).waitAction(2000).perform();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
 	}
 
 	@Override
 	public void e_InformarEstoque() {
 		// TODO Auto-generated method stub
-		TouchAction clicarVoltaInicio = new TouchAction(driver);
-		By telaFinalCompra = By.className("android.widget.logImage");
-		// clique no botão continuar comprando
-		wait.until(ExpectedConditions.visibilityOfElementLocated(telaFinalCompra));
-		clicarVoltaInicio.tap(896, 795).perform();
-		// clique no menu bookstore
-		wait.until(ExpectedConditions.visibilityOfElementLocated(telaFinalCompra));
-		clicarVoltaInicio.tap(221, 111).perform();
+		System.out.println("Informando Estoque");
+	
 	}
 
 	@Override
